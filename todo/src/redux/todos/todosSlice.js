@@ -31,7 +31,13 @@ export const todosSlice = createSlice({
         item.complated = !item.complated;
 
     },  
+    destroy : (state,action) => {
+        const id = action.payload; // id'i obje olarak almak istemediğimiz için süslü paranteze koymadık
+        const filtered = state.items.filter((item) => item.id !== id); //item.id denk değilse id'e filtre içine eklensin
+        state.items = filtered;
+    },
+
 })
 
-export const {addTodo,toggle} = todosSlice.actions; 
+export const {addTodo,toggle,destroy} = todosSlice.actions; 
 export default todosSlice.reducer;
